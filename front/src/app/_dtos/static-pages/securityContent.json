@@ -1,0 +1,47 @@
+[
+  {
+    "title": "Profile Statuses",
+    "description": "Profiles on our platform can have different statuses:",
+    "items": [
+      {
+        "status": "Verified",
+        "description": "Profiles become verified after identity checks and activity reviews, signaling a higher level of trust."
+      },
+      {
+        "status": "Blocked",
+        "description": "If we detect suspicious or harmful behavior, the profile will be blocked, and users are notified of this status."
+      },
+      {
+        "status": "Pending",
+        "description": "New profiles or those flagged for verification enter a pending status until we complete our checks."
+      }
+    ]
+  },
+  {
+    "title": "Trip/Requirement Verification",
+    "description": "Before making trips and Needs publicly available, we carefully verify each one to ensure they align with our security policies. Trips can have statuses such as:",
+    "items": [
+      {
+        "status": "Accepted",
+        "description": "Trips and Needs verified and approved, ready for user engagement."
+      },
+      {
+        "status": "Pending Verification",
+        "description": "Awaiting verification to confirm trip details."
+      }
+    ]
+  },
+  {
+    "title": "Delivery Process",
+    "description": "For both package and shopping deliveries:",
+    "steps": [
+      "Item Verification: Travelers and senders upload item details and images, ensuring transparency.",
+      "Delivery Check: Travelers can inspect items upon pickup to confirm they match the description.",
+      "Secure Exchange: Travelers hand off items to recipients directly or through secure collection points."
+    ]
+  },
+  {
+    "title": "Reporting and Accountability",
+    "description": "Our users can report concerns regarding items or profiles. These reports are carefully reviewed, and if necessary, we adjust the status of items or users based on the accumulated feedback, ensuring accountability and responsiveness within our community."
+  }
+]

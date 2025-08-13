@@ -1,0 +1,109 @@
+{
+  "explorer.confirmDelete": false,
+  "python.pythonPath": "/usr/bin/python3",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnPaste": true,
+  "prettier.useTabs": true,
+  "html.format.indentInnerHtml": true,
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "html.format.templating": true,
+  "liveshare.presence": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "workbench.iconTheme": "material-icon-theme",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.jsxSingleQuote": true,
+  "prettier.printWidth": 120,
+  "editor.renderWhitespace": "all",
+  "editor.wordWrapColumn": 120,
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.linkedEditing": true,
+  "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "snyk.yesWelcomeNotification": false,
+  "snyk.token": "42bdfed4-6afa-4025-870c-a595d2e75eee",
+  "editor.formatOnSave": true,
+  "bracketPairColorizer.depreciation-notice": false,
+  "python.analysis.completeFunctionParens": true,
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "bracket-pair-colorizer-2.depreciation-notice": false,
+  "python.languageServer": "Pylance",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnType": true
+  },
+  "git.autofetch": true,
+  "totalTypeScript.hideAllTips": false,
+  "totalTypeScript.hideBasicTips": false,
+  "totalTypeScript.hiddenTips": [
+    "typing-function-parameters",
+    "basic-types",
+    "ts-object-type",
+    "passing-generics-to-types",
+    "interface-declaration",
+    "optional-object-property",
+    "type-alias-declaration",
+    "omit-utility-type",
+    "literal-type",
+    "union-type",
+    "null-keyword",
+    "variable-type-annotation",
+    "returntype-utility-type",
+    "typeof",
+    "undefined-keyword",
+    "array-type",
+    "as-const",
+    "generic-slots-in-functions",
+    "tuple-type",
+    "type-alias-with-generics",
+    "type-alias-with-multiple-generics",
+    "as-assertion",
+    "any-type",
+    "non-null-expression",
+    "function-return-type",
+    "record-utility-type",
+    "readonly-utility-type",
+    "keyof",
+    "partial-utility-type",
+    "interface-with-generics",
+    "type-predicate",
+    "parameters-utility-type"
+  ],
+  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "prettier.configPath": ".prettierrc.json",
+  "dart.flutterSdkPath": "/home/mo3tafa/flutter",
+  "editor.fontLigatures": true,
+  "git.openRepositoryInParentFolders": "never",
+  "editor.fontSize": 16,
+  "terminal.integrated.env.linux": {},
+  "html.format.wrapLineLength": 100,
+  "aws.suppressPrompts": {
+    "codeWhispererNewWelcomeMessage": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.trailingComma": "all",
+  "console-ninja.featureSet": "Community",
+  "window.zoomLevel": 1,
+  "json.format.enable": true,
+  "codeium.enableConfig": {
+    "*": true,
+    "markdown": true,
+    "tailwindcss": true
+  }
+}

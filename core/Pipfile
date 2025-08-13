@@ -1,0 +1,39 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-restframework = "*"
+drf-spectacular = "*"
+django-mysql = "*"
+django-environ = "*"
+mysqlclient = "*"
+django-factory-boy = "*"
+django-enum-choices = "*"
+gunicorn = "*"
+gevent = "*"
+django-filter = "*"
+django-rest-knox = "*"
+djangorestframework-simplejwt = "*"
+pytz = "*"
+pillow = "*"
+django-cors-headers = "*"
+django-viewflow = "*"
+oauthlib = "*"
+requests = "*"
+responses = "*"
+pydantic = "*"
+django-user-agents = "*"
+bs4 = "*"
+django-json-widget = "*"
+django-object-actions = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
+
+[pipenv]
+allow_prereleases = true

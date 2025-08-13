@@ -1,0 +1,7 @@
+.home .ant-tabs-nav-list {
+  @apply !w-full;
+}
+
+.ant-tabs-tab {
+  @apply !ml-3 md:ml-12;
+}

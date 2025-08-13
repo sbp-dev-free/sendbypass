@@ -1,0 +1,4 @@
+.ant-upload,
+.ant-upload-list-item-container {
+  @apply !size-[134px];
+}

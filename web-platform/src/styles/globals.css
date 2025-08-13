@@ -1,0 +1,55 @@
+@import url("./colors.css");
+@import url("../../public/icons/iconly.min.css");
+@tailwind base;
+@layer base {
+  * {
+    @apply font-roboto;
+  }
+}
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-6::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-12::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .scrollbar-6::-webkit-scrollbar-thumb,
+  .scrollbar-12::-webkit-scrollbar-thumb {
+    @apply bg-outline-variant rounded-full;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media screen and (max-width: 767px) {
+  .intercom-lightweight-app-launcher {
+    bottom: 85px !important;
+  }
+  .intercom-lightweight-app {
+    z-index: 1100 !important;
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

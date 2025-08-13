@@ -1,0 +1,56 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended"
+  ],
+  "plugins": ["prettier", "simple-import-sort"],
+
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": { "jsx": true }
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "react-hooks/exhaustive-deps": "off",
+    "prettier/prettier": "off",
+    "import/no-unresolved": [2, { "ignore": ["\\/css/*"] }],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react$"],
+          ["^@?\\w"],
+          ["^(@|components)(/.*|$)"],
+          ["^\\u0000"],
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          ["^.+\\.?(css)$"]
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "ImportDeclaration[source.value='@mui/material'] ImportSpecifier:not([imported.name='ThemeProvider']):not([imported.name='createTheme'])",
+        "message": "Please use default imports like `import Button from '@mui/material/Button';` instead of named imports from '@mui/material', except for allowed components like ThemeProvider."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["type*.ts", "**/enums/*.ts"],
+      "rules": {
+        "no-unused-vars": "off"
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

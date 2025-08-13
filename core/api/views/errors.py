@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+from enum import Enum
+
+
+class APIErrorCode(Enum):
+    TRIP_HAS_REQUEST = 2001
+
+    SERVICE_HAS_REQUEST = 3001
+
+    REQUIREMENT_HAS_ERROR = 4001
+    REQUIREMENT_HAS_REQUEST = 4002
+
+    LOGIN_GOOGLE_ERROR = 5001
+    LOGIN_INVALID_INPUT = 5002
+    LOGIN_INVALID_AUTH = 5003

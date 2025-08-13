@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>Sendbypass</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+      }
+      .container {
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .header img {
+        max-width: 100%;
+        height: auto;
+      }
+      .content {
+        padding: 16px;
+        color: #49454f;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      p {
+        margin: 0;
+      }
+      .button {
+        display: inline-block;
+        background-color: #67548e;
+        color: #ffffff  !important;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        margin: 20px 0;
+      }
+      .social-media {
+        text-align: center;
+      }
+      .social-media a {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 48px;
+      }
+
+      .social-media img {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+      }
+
+      .footer {
+        margin-top: 20px;
+        padding: 24px;
+        background-color: #e6e1e6 !important;
+        border-radius: 16px;
+        font-size: 12px;
+        color: #49454f !important;
+      }
+
+      .footer span {
+        max-width: 445px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .container {
+          padding: 10px;
+        }
+        .content {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="https://api.sendbypass.com{% static 'email/Header.png' %}"
+          alt="Sendbypass Logo" />
+      </div>
+      <div class="content">
+        <p>Hello {{ user.profile.full_name }}</p>
+        <p>
+          Thank you for submitting your trip details! Our team is
+          currently reviewing your information to ensure it meets our
+          guidelines. 
+        </p>
+        <a
+          href="https://{{ domain }}/trips"
+          class="button">View My Needs</a>
+        <p>
+        Once approved, your request will go live if you set it to
+        publish, so travelers can see what you need and reach out with
+        offers. Thanks for choosing Sendbypass to simplify your
+        shipping process.
+        </p>
+        <p>Best regards,<br />Sendbypass Team</p>
+      </div>
+      <div class="social-media">
+        <a href="https://x.com/sendbypass_co" target="_blank">
+          <img
+            src="https://api.sendbypass.com{% static 'email/X.png' %}"
+            alt="X.com"
+          />
+        </a>
+        <a
+          href="https://www.instagram.com/sendbypass?igsh=MWpyNDB3enBmaWFtcA=="
+          target="_blank"
+        >
+          <img
+            src="https://api.sendbypass.com{% static 'email/Instagram.png' %}"
+            alt="Instagram"
+          />
+        </a>
+        <a href="https://www.linkedin.com/company/sendbypass" target="_blank">
+          <img
+            src="https://api.sendbypass.com{% static 'email/Linkedin.png' %}"
+            alt="LinkedIn"
+          />
+        </a>
+      </div>
+      <div class="footer">
+        <span>
+          At Sendbypass, we are revolutionizing the way people connect for
+          secure and affordable international shipping. Our innovative platform
+          seamlessly unites travelers, senders, and buyers to streamline global
+          item transfers.
+        </span>
+        <span>Sendbypass © 2024.</span>
+      </div>
+    </div>
+  </body>
+</html>

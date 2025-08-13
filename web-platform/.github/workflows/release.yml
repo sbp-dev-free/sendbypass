@@ -1,0 +1,56 @@
+name: Bump Package Version On Merge To Develop Branch
+
+permissions:
+  contents: write
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [closed]
+
+jobs:
+  bump-package-version:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Bump package version
+        run: |
+          # Increment the version in package.json
+          pr_title="${{ github.event.pull_request.title }}"
+          echo $pr_title
+
+          if [[ $pr_title =~ ^(version|Version).* ]]; then
+              echo "PR starts with 'version':"
+              npm version major --no-git-tag-version
+          elif [[ $pr_title =~ ^(feature|Feature).*  ]]; then
+              echo "PR starts with 'feature'"
+              npm version minor --no-git-tag-version
+          else
+              echo "PR title does not match any expected pattern."
+              npm version patch --no-git-tag-version
+              npm version patch --no-git-tag-version
+          fi
+
+          # Get the new version and the last commit hash
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          LAST_COMMIT_HASH=$(git rev-parse --short HEAD)
+
+          # Append the commit hash to the version
+          UPDATED_VERSION="${NEW_VERSION}-rc${LAST_COMMIT_HASH}"
+          echo "Updated version: $UPDATED_VERSION"
+
+          # Update the package.json with the new version
+          node -e "let pkg=require('./package.json'); pkg.version='$UPDATED_VERSION'; require('fs').writeFileSync('./package.json', JSON.stringify(pkg, null, 2));"
+
+          # Commit the updated package.json
+          git config user.name "mohiz"
+          git config user.email "mohsen.tamiz@gmail.com"
+          git add package.json
+          git commit -m "Bump package version to $UPDATED_VERSION"
+          git tag $UPDATED_VERSION
+          git push && git push --tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

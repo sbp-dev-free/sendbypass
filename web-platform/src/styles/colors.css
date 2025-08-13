@@ -1,0 +1,479 @@
+:root {
+  --primary-0: 0, 0, 0;
+  --primary-5: 23, 2, 59;
+  --primary-10: 34, 15, 70;
+  --primary-15: 45, 27, 81;
+  --primary-20: 56, 38, 92;
+  --primary-25: 67, 49, 104;
+  --primary-30: 79, 61, 116;
+  --primary-35: 91, 72, 129;
+  --primary-40: 103, 84, 142;
+  --primary-50: 129, 109, 168;
+  --primary-60: 155, 134, 196;
+  --primary-70: 182, 161, 224;
+  --primary-80: 210, 188, 253;
+  --primary-90: 234, 221, 255;
+  --primary-95: 246, 237, 255;
+  --primary-98: 254, 247, 255;
+  --primary-99: 255, 251, 255;
+  --primary-100: 255, 255, 255;
+
+  --secondary-0: 0, 0, 0;
+  --secondary-10: 0, 32, 26;
+  --secondary-15: 0, 44, 36;
+  --secondary-20: 0, 56, 47;
+  --secondary-25: 0, 68, 57;
+  --secondary-30: 0, 81, 68;
+  --secondary-35: 0, 94, 80;
+  --secondary-40: 0, 107, 91;
+  --secondary-50: 0, 134, 115;
+  --secondary-60: 0, 163, 140;
+  --secondary-70: 57, 191, 167;
+  --secondary-80: 92, 219, 194;
+  --secondary-90: 148, 244, 222;
+  --secondary-95: 183, 255, 237;
+  --secondary-98: 229, 255, 247;
+  --secondary-99: 243, 255, 250;
+  --secondary-100: 255, 255, 255;
+
+  --error-0: 0, 0, 0;
+  --error-10: 65, 0, 6;
+  --error-15: 84, 0, 10;
+  --error-20: 104, 0, 15;
+  --error-25: 125, 0, 20;
+  --error-30: 147, 0, 25;
+  --error-35: 169, 0, 30;
+  --error-40: 191, 0, 36;
+  --error-50: 237, 8, 48;
+  --error-60: 255, 83, 87;
+  --error-70: 255, 137, 133;
+  --error-80: 255, 179, 176;
+  --error-90: 255, 218, 216;
+  --error-95: 255, 237, 235;
+  --error-98: 255, 248, 247;
+  --error-99: 255, 251, 255;
+  --error-100: 255, 255, 255;
+
+  --warning-0: 0, 0, 0;
+  --warning-10: 47, 21, 0;
+  --warning-15: 62, 29, 0;
+  --warning-20: 78, 38, 0;
+  --warning-25: 94, 47, 0;
+  --warning-30: 111, 56, 0;
+  --warning-35: 128, 66, 0;
+  --warning-40: 146, 76, 0;
+  --warning-50: 178, 99, 24;
+  --warning-60: 209, 124, 48;
+  --warning-70: 240, 150, 72;
+  --warning-80: 255, 183, 127;
+  --warning-90: 255, 220, 196;
+  --warning-95: 255, 237, 227;
+  --warning-98: 255, 248, 245;
+  --warning-99: 255, 251, 255;
+  --warning-100: 255, 255, 255;
+
+  --positive-0: 0, 0, 0;
+  --positive-10: 0, 32, 28;
+  --positive-15: 0, 43, 39;
+  --positive-20: 0, 55, 50;
+  --positive-25: 0, 68, 61;
+  --positive-30: 0, 80, 72;
+  --positive-35: 0, 93, 84;
+  --positive-40: 0, 106, 96;
+  --positive-50: 0, 134, 122;
+  --positive-60: 0, 162, 148;
+  --positive-70: 43, 191, 175;
+  --positive-80: 83, 219, 202;
+  --positive-90: 146, 244, 229;
+  --positive-95: 180, 255, 242;
+  --positive-98: 228, 255, 249;
+  --positive-99: 242, 255, 251;
+  --positive-100: 255, 255, 255;
+
+  --informative-0: 0, 0, 0;
+  --informative-10: 0, 27, 62;
+  --informative-15: 0, 37, 80;
+  --informative-20: 0, 48, 100;
+  --informative-25: 0, 58, 120;
+  --informative-30: 0, 70, 141;
+  --informative-35: 0, 81, 162;
+  --informative-40: 0, 93, 184;
+  --informative-50: 51, 118, 211;
+  --informative-60: 82, 145, 239;
+  --informative-70: 122, 172, 255;
+  --informative-80: 170, 199, 255;
+  --informative-90: 214, 227, 255;
+  --informative-95: 236, 240, 255;
+  --informative-98: 249, 249, 255;
+  --informative-99: 253, 251, 255;
+  --informative-100: 255, 255, 255;
+
+  --neutral-0: 0, 0, 0;
+  --neutral-5: 18, 16, 20;
+  --neutral-10: 29, 27, 31;
+  --neutral-15: 39, 37, 41;
+  --neutral-20: 50, 47, 52;
+  --neutral-25: 61, 58, 63;
+  --neutral-30: 72, 70, 74;
+  --neutral-35: 84, 81, 86;
+  --neutral-40: 96, 93, 98;
+  --neutral-50: 121, 118, 123;
+  --neutral-60: 147, 143, 149;
+  --neutral-70: 174, 170, 175;
+  --neutral-80: 202, 197, 202;
+  --neutral-87: 222, 216, 225;
+  --neutral-90: 230, 225, 230;
+  --neutral-92: 236, 230, 240;
+  --neutral-94: 243, 237, 247;
+  --neutral-95: 245, 239, 245;
+  --neutral-96: 247, 242, 250;
+  --neutral-98: 254, 247, 253;
+  --neutral-99: 255, 251, 255;
+  --neutral-100: 255, 255, 255;
+
+  --neutral-variant-0: 0, 0, 0;
+  --neutral-variant-5: 18, 16, 24;
+  --neutral-variant-10: 29, 26, 35;
+  --neutral-variant-15: 40, 36, 45;
+  --neutral-variant-20: 50, 47, 56;
+  --neutral-variant-25: 62, 58, 67;
+  --neutral-variant-30: 73, 69, 79;
+  --neutral-variant-35: 85, 81, 91;
+  --neutral-variant-40: 97, 92, 103;
+  --neutral-variant-50: 122, 117, 128;
+  --neutral-variant-60: 148, 142, 154;
+  --neutral-variant-70: 175, 169, 180;
+  --neutral-variant-80: 203, 196, 208;
+  --neutral-variant-90: 231, 224, 236;
+  --neutral-variant-95: 246, 238, 250;
+  --neutral-variant-98: 254, 247, 255;
+  --neutral-variant-99: 255, 251, 255;
+  --neutral-variant-100: 255, 255, 255;
+
+  --primary: var(--primary-40);
+  --on-primary: var(--primary-100);
+  --primary-container: var(--primary-90);
+  --on-primary-container: var(--primary-30);
+
+  --secondary: var(--secondary-40);
+  --on-secondary: var(--secondary-100);
+  --secondary-container: var(--secondary-90);
+  --on-secondary-container: var(--secondary-30);
+
+  --error: var(--error-40);
+  --on-error: var(--error-100);
+  --error-container: var(--error-90);
+  --on-error-container: var(--error-30);
+
+  --positive: var(--positive-40);
+  --on-positive: var(--positive-100);
+  --positive-container: var(--positive-90);
+  --on-positive-container: var(--positive-30);
+
+  --warning: var(--warning-50);
+  --on-warning: var(--warning-100);
+  --warning-container: var(--warning-90);
+  --on-warning-container: var(--warning-30);
+
+  --informative: var(--informative-40);
+  --on-informative: var(--informative-100);
+  --informative-container: var(--informative-90);
+  --on-informative-container: var(--informative-30);
+
+  --surface-dim: var(--neutral-87);
+  --surface: var(--neutral-98);
+  --surface-variant: var(--neutral-variant-98);
+  --background: var(--neutral-98);
+  --on-background: var(--neutral-10);
+  --surface-bright: var(--neutral-99);
+  --surface-tint: var(--primary-35);
+  --surface-container-lowest: var(--neutral-100);
+  --surface-container-low: var(--neutral-96);
+  --surface-container: var(--neutral-94);
+  --surface-container-high: var(--neutral-92);
+  --surface-container-highest: var(--neutral-90);
+
+  --on-surface: var(--neutral-10);
+  --on-surface-variant: var(--neutral-variant-30);
+  --outline: var(--neutral-variant-50);
+  --outline-variant: var(--neutral-variant-80);
+
+  --inverse-surface: var(--neutral-20);
+  --inverse-on-surface: var(--neutral-95);
+  --inverse-primary: var(--primary-80);
+
+  --scrim: var(--neutral-0);
+  --shadow: var(--neutral-0);
+
+  --primary-fixed: var(--primary-90);
+  --primary-fixed-dim: var(--primary-80);
+  --on-primary-fixed: var(--primary-10);
+  --on-primary-fixed-variant: var(--primary-30);
+
+  --secondary-fixed: var(--secondary-90);
+  --secondary-fixed-dim: var(--secondary-80);
+  --on-secondary-fixed: var(--secondary-10);
+  --on-secondary-fixed-variant: var(--secondary-30);
+
+  --primary-opacity-0: var(--primary), 0;
+  --primary-opacity-8: var(--primary), 0.08;
+  --primary-opacity-12: var(--primary), 0.12;
+  --primary-opacity-16: var(--primary), 0.16;
+  --primary-opacity-50: var(--primary), 0.5;
+
+  --on-primary-opacity-0: var(--on-primary), 0;
+  --on-primary-opacity-8: var(--on-primary), 0.08;
+  --on-primary-opacity-12: var(--on-primary), 0.12;
+  --on-primary-opacity-16: var(--on-primary), 0.16;
+  --on-primary-opacity-50: var(--on-primary), 0.5;
+
+  --on-primary-container-opacity-0: var(--on-primary-container), 0;
+  --on-primary-container-opacity-8: var(--on-primary-container), 0.08;
+  --on-primary-container-opacity-12: var(--on-primary-container), 0.12;
+  --on-primary-container-opacity-16: var(--on-primary-container), 0.16;
+  --on-primary-container-opacity-50: var(--on-primary-container), 0.5;
+
+  --primary-fixed-opacity-0: var(--primary-fixed), 0;
+  --primary-fixed-opacity-8: var(--primary-fixed), 0.08;
+  --primary-fixed-opacity-12: var(--primary-fixed), 0.12;
+  --primary-fixed-opacity-16: var(--primary-fixed), 0.16;
+  --primary-fixed-opacity-50: var(--primary-fixed), 0.5;
+
+  --on-primary-fixed-opacity-0: var(--on-primary-fixed), 0;
+  --on-primary-fixed-opacity-8: var(--on-primary-fixed), 0.08;
+  --on-primary-fixed-opacity-12: var(--on-primary-fixed), 0.12;
+  --on-primary-fixed-opacity-16: var(--on-primary-fixed), 0.16;
+  --on-primary-fixed-opacity-50: var(--on-primary-fixed), 0.5;
+
+  --primary-fixed-dim-opacity-0: var(--primary-fixed-dim), 0;
+  --primary-fixed-dim-opacity-8: var(--primary-fixed-dim), 0.08;
+  --primary-fixed-dim-opacity-12: var(--primary-fixed-dim), 0.12;
+  --primary-fixed-dim-opacity-16: var(--primary-fixed-dim), 0.16;
+  --primary-fixed-dim-opacity-50: var(--primary-fixed-dim), 0.5;
+
+  --on-primary-fixed-variant-opacity-0: var(--on-primary-fixed-variant), 0;
+  --on-primary-fixed-variant-opacity-8: var(--on-primary-fixed-variant), 0.08;
+  --on-primary-fixed-variant-opacity-12: var(--on-primary-fixed-variant), 0.12;
+  --on-primary-fixed-variant-opacity-16: var(--on-primary-fixed-variant), 0.16;
+  --on-primary-fixed-variant-opacity-50: var(--on-primary-fixed-variant), 0.5;
+
+  --secondary-opacity-0: var(--secondary), 0;
+  --secondary-opacity-8: var(--secondary), 0.08;
+  --secondary-opacity-12: var(--secondary), 0.12;
+  --secondary-opacity-16: var(--secondary), 0.16;
+  --secondary-opacity-50: var(--secondary), 0.5;
+
+  --on-secondary-opacity-0: var(--on-secondary), 0;
+  --on-secondary-opacity-8: var(--on-secondary), 0.08;
+  --on-secondary-opacity-12: var(--on-secondary), 0.12;
+  --on-secondary-opacity-16: var(--on-secondary), 0.16;
+  --on-secondary-opacity-50: var(--on-secondary), 0.5;
+
+  --secondary-container-opacity-0: var(--secondary-container), 0;
+  --secondary-container-opacity-8: var(--secondary-container), 0.08;
+  --secondary-container-opacity-12: var(--secondary-container), 0.12;
+  --secondary-container-opacity-16: var(--secondary-container), 0.16;
+  --secondary-container-opacity-50: var(--secondary-container), 0.5;
+
+  --on-secondary-container-opacity-0: var(--on-secondary-container), 0;
+  --on-secondary-container-opacity-8: var(--on-secondary-container), 0.08;
+  --on-secondary-container-opacity-12: var(--on-secondary-container), 0.12;
+  --on-secondary-container-opacity-16: var(--on-secondary-container), 0.16;
+  --on-secondary-container-opacity-50: var(--on-secondary-container), 0.5;
+
+  --secondary-fixed-opacity-0: var(--secondary-fixed), 0;
+  --secondary-fixed-opacity-8: var(--secondary-fixed), 0.08;
+  --secondary-fixed-opacity-12: var(--secondary-fixed), 0.12;
+  --secondary-fixed-opacity-16: var(--secondary-fixed), 0.16;
+  --secondary-fixed-opacity-50: var(--secondary-fixed), 0.5;
+
+  --on-secondary-fixed-opacity-0: var(--on-secondary-fixed), 0;
+  --on-secondary-fixed-opacity-8: var(--on-secondary-fixed), 0.08;
+  --on-secondary-fixed-opacity-12: var(--on-secondary-fixed), 0.12;
+  --on-secondary-fixed-opacity-16: var(--on-secondary-fixed), 0.16;
+  --on-secondary-fixed-opacity-50: var(--on-secondary-fixed), 0.5;
+
+  --secondary-fixed-dim-opacity-0: var(--secondary-fixed-dim), 0;
+  --secondary-fixed-dim-opacity-8: var(--secondary-fixed-dim), 0.08;
+  --secondary-fixed-dim-opacity-12: var(--secondary-fixed-dim), 0.12;
+  --secondary-fixed-dim-opacity-16: var(--secondary-fixed-dim), 0.16;
+  --secondary-fixed-dim-opacity-50: var(--secondary-fixed-dim), 0.5;
+
+  --on-secondary-fixed-variant-opacity-0: var(--on-secondary-fixed-variant), 0;
+  --on-secondary-fixed-variant-opacity-8: var(--on-secondary-fixed-variant),
+    0.08;
+  --on-secondary-fixed-variant-opacity-12: var(--on-secondary-fixed-variant),
+    0.12;
+  --on-secondary-fixed-variant-opacity-16: var(--on-secondary-fixed-variant),
+    0.16;
+  --on-secondary-fixed-variant-opacity-50: var(--on-secondary-fixed-variant),
+    0.5;
+
+  --error-opacity-0: var(--error), 0;
+  --error-opacity-8: var(--error), 0.08;
+  --error-opacity-12: var(--error), 0.12;
+  --error-opacity-16: var(--error), 0.16;
+  --error-opacity-50: var(--error), 0.5;
+
+  --error-container-opacity-0: var(--error-container), 0;
+  --error-container-opacity-8: var(--error-container), 0.08;
+  --error-container-opacity-12: var(--error-container), 0.12;
+  --error-container-opacity-16: var(--error-container), 0.16;
+  --error-container-opacity-50: var(--error-container), 0.5;
+
+  --on-error-container-opacity-0: var(--on-error-container), 0;
+  --on-error-container-opacity-8: var(--on-error-container), 0.08;
+  --on-error-container-opacity-12: var(--on-error-container), 0.12;
+  --on-error-container-opacity-16: var(--on-error-container), 0.16;
+  --on-error-container-opacity-50: var(--on-error-container), 0.5;
+
+  --on-error-opacity-0: var(--on-error), 0;
+  --on-error-opacity-8: var(--on-error), 0.08;
+  --on-error-opacity-12: var(--on-error), 0.12;
+  --on-error-opacity-16: var(--on-error), 0.16;
+  --on-error-opacity-50: var(--on-error), 0.5;
+
+  --positive-opacity-0: var(--positive), 0;
+  --positive-opacity-8: var(--positive), 0.08;
+  --positive-opacity-12: var(--positive), 0.12;
+  --positive-opacity-16: var(--positive), 0.16;
+  --positive-opacity-50: var(--positive), 0.5;
+
+  --warning-opacity-0: var(--warning), 0;
+  --warning-opacity-8: var(--warning), 0.08;
+  --warning-opacity-12: var(--warning), 0.12;
+  --warning-opacity-16: var(--warning), 0.16;
+  --warning-opacity-50: var(--warning), 0.5;
+
+  --informative-opacity-0: var(--informative), 0;
+  --informative-opacity-8: var(--informative), 0.08;
+  --informative-opacity-12: var(--informative), 0.12;
+  --informative-opacity-16: var(--informative), 0.16;
+  --informative-opacity-50: var(--informative), 0.5;
+
+  --outline-opacity-0: var(--outline), 0;
+  --outline-opacity-8: var(--outline), 0.08;
+  --outline-opacity-12: var(--outline), 0.12;
+  --outline-opacity-16: var(--outline), 0.16;
+  --outline-opacity-50: var(--outline), 0.5;
+
+  --background-opacity-0: var(--background), 0;
+  --background-opacity-8: var(--background), 0.08;
+  --background-opacity-12: var(--background), 0.12;
+  --background-opacity-16: var(--background), 0.16;
+  --background-opacity-50: var(--background), 0.5;
+
+  --on-background-opacity-0: var(--on-background), 0;
+  --on-background-opacity-8: var(--on-background), 0.08;
+  --on-background-opacity-12: var(--on-background), 0.12;
+  --on-background-opacity-16: var(--on-background), 0.16;
+  --on-background-opacity-50: var(--on-background), 0.5;
+
+  --surface-opacity-0: var(--surface), 0;
+  --surface-opacity-8: var(--surface), 0.08;
+  --surface-opacity-12: var(--surface), 0.12;
+  --surface-opacity-16: var(--surface), 0.16;
+  --surface-opacity-50: var(--surface), 0.5;
+
+  --on-surface-opacity-0: var(--on-surface), 0;
+  --on-surface-opacity-8: var(--on-surface), 0.08;
+  --on-surface-opacity-12: var(--on-surface), 0.12;
+  --on-surface-opacity-16: var(--on-surface), 0.16;
+  --on-surface-opacity-50: var(--on-surface), 0.5;
+
+  --surface-variant-opacity-0: var(--surface-variant), 0;
+  --surface-variant-opacity-8: var(--surface-variant), 0.08;
+  --surface-variant-opacity-12: var(--surface-variant), 0.12;
+  --surface-variant-opacity-16: var(--surface-variant), 0.16;
+  --surface-variant-opacity-50: var(--surface-variant), 0.5;
+
+  --on-surface-variant-opacity-0: var(--on-surface-variant), 0;
+  --on-surface-variant-opacity-8: var(--on-surface-variant), 0.08;
+  --on-surface-variant-opacity-12: var(--on-surface-variant), 0.12;
+  --on-surface-variant-opacity-16: var(--on-surface-variant), 0.16;
+  --on-surface-variant-opacity-50: var(--on-surface-variant), 0.5;
+
+  --inverse-surface-opacity-0: var(--inverse-surface), 0;
+  --inverse-surface-opacity-8: var(--inverse-surface), 0.08;
+  --inverse-surface-opacity-12: var(--inverse-surface), 0.12;
+  --inverse-surface-opacity-16: var(--inverse-surface), 0.16;
+  --inverse-surface-opacity-50: var(--inverse-surface), 0.5;
+
+  --inverse-on-surface-opacity-0: var(--inverse-on-surface), 0;
+  --inverse-on-surface-opacity-8: var(--inverse-on-surface), 0.08;
+  --inverse-on-surface-opacity-12: var(--inverse-on-surface), 0.12;
+  --inverse-on-surface-opacity-16: var(--inverse-on-surface), 0.16;
+  --inverse-on-surface-opacity-50: var(--inverse-on-surface), 0.5;
+
+  --inverse-primary-opacity-0: var(--inverse-primary), 0;
+  --inverse-primary-opacity-8: var(--inverse-primary), 0.08;
+  --inverse-primary-opacity-12: var(--inverse-primary), 0.12;
+  --inverse-primary-opacity-16: var(--inverse-primary), 0.16;
+  --inverse-primary-opacity-50: var(--inverse-primary), 0.5;
+
+  --shadow-opacity-0: var(--shadow), 0;
+  --shadow-opacity-8: var(--shadow), 0.08;
+  --shadow-opacity-12: var(--shadow), 0.12;
+  --shadow-opacity-16: var(--shadow), 0.16;
+  --shadow-opacity-50: var(--shadow), 0.5;
+
+  --surface-tint-opacity-0: var(--surface-tint), 0;
+  --surface-tint-opacity-8: var(--surface-tint), 0.08;
+  --surface-tint-opacity-12: var(--surface-tint), 0.12;
+  --surface-tint-opacity-16: var(--surface-tint), 0.16;
+  --surface-tint-opacity-50: var(--surface-tint), 0.5;
+
+  --outline-variant-opacity-0: var(--outline-variant), 0;
+  --outline-variant-opacity-8: var(--outline-variant), 0.08;
+  --outline-variant-opacity-12: var(--outline-variant), 0.12;
+  --outline-variant-opacity-16: var(--outline-variant), 0.16;
+  --outline-variant-opacity-50: var(--outline-variant), 0.5;
+
+  --scrim-opacity-0: var(--scrim), 0;
+  --scrim-opacity-8: var(--scrim), 0.08;
+  --scrim-opacity-12: var(--scrim), 0.12;
+  --scrim-opacity-16: var(--scrim), 0.16;
+  --scrim-opacity-50: var(--scrim), 0.5;
+
+  --surface-container-highest-opacity-0: var(--surface-container-highest), 0;
+  --surface-container-highest-opacity-8: var(--surface-container-highest), 0.08;
+  --surface-container-highest-opacity-12: var(--surface-container-highest), 0.12;
+  --surface-container-highest-opacity-16: var(--surface-container-highest), 0.16;
+  --surface-container-highest-opacity-50: var(--surface-container-highest), 0.5;
+
+  --surface-container-high-opacity-0: var(--surface-container-high), 0;
+  --surface-container-high-opacity-8: var(--surface-container-high), 0.08;
+  --surface-container-high-opacity-12: var(--surface-container-high), 0.12;
+  --surface-container-high-opacity-16: var(--surface-container-high), 0.16;
+  --surface-container-high-opacity-50: var(--surface-container-high), 0.5;
+
+  --surface-container-opacity-0: var(--surface-container), 0;
+  --surface-container-opacity-8: var(--surface-container), 0.08;
+  --surface-container-opacity-12: var(--surface-container), 0.12;
+  --surface-container-opacity-16: var(--surface-container), 0.16;
+  --surface-container-opacity-50: var(--surface-container), 0.5;
+
+  --surface-container-low-opacity-0: var(--surface-container-low), 0;
+  --surface-container-low-opacity-8: var(--surface-container-low), 0.08;
+  --surface-container-low-opacity-12: var(--surface-container-low), 0.12;
+  --surface-container-low-opacity-16: var(--surface-container-low), 0.16;
+  --surface-container-low-opacity-50: var(--surface-container-low), 0.5;
+
+  --surface-container-lowest-opacity-0: var(--surface-container-lowest), 0;
+  --surface-container-lowest-opacity-8: var(--surface-container-lowest), 0.08;
+  --surface-container-lowest-opacity-12: var(--surface-container-lowest), 0.12;
+  --surface-container-lowest-opacity-16: var(--surface-container-lowest), 0.16;
+  --surface-container-lowest-opacity-50: var(--surface-container-lowest), 0.5;
+
+  --surface-bright-opacity-0: var(--surface-bright), 0;
+  --surface-bright-opacity-8: var(--surface-bright), 0.08;
+  --surface-bright-opacity-12: var(--surface-bright), 0.12;
+  --surface-bright-opacity-16: var(--surface-bright), 0.16;
+  --surface-bright-opacity-50: var(--surface-bright), 0.5;
+
+  --surface-dim-opacity-0: var(--surface-dim), 0;
+  --surface-dim-opacity-8: var(--surface-dim), 0.08;
+  --surface-dim-opacity-12: var(--surface-dim), 0.12;
+  --surface-dim-opacity-16: var(--surface-dim), 0.16;
+  --surface-dim-opacity-50: var(--surface-dim), 0.5;
+}

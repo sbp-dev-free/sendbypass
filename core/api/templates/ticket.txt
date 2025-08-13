@@ -1,0 +1,5 @@
+{{ first_name }} {{ last_name }} has sent message:
+{{ message }}
+
+Email: {{ email }}
+PhoneNumber: {{ phone_number }}

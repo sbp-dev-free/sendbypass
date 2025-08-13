@@ -1,0 +1,197 @@
+:root {
+    --header-height: 65px;
+}
+html {
+    scroll-behavior: smooth;
+}
+.main-navigation {
+    &.mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: fixed;
+        background-color: #fff;
+        width: 100%;
+        height: calc(100dvh - var(--header-height));
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        transform: translateX(100%);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        visibility: hidden;
+        overflow-y: hidden;
+        padding: 16px 16px 40px;
+        z-index: 2;
+            @supports (-webkit-touch-callout: none) {
+                height: calc(100vh - var(--header-height));
+                // Fallback for older iOS
+                height: calc(-webkit-fill-available - var(--header-height));
+            }
+            #primary-menu{
+                li{
+                    padding: 12px 8px;
+                    a{
+                        color: #1D1B1F;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 24px;
+                    }
+                }
+            }
+        &.show {
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        &.closing {
+            transform: translateX(100%);
+        }
+    }
+}
+.show-more{
+    position: absolute;
+    bottom: 6px;
+    display: block;
+    right: 20px;
+}
+
+.wp-editor{
+    h2,h3,h4,h5,h6{
+        color: #1D1B20;
+        margin-top: 32px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+    h2{
+        font-size: 24px;
+        line-height: 24px;
+    }
+    h3,h4{
+        font-size: 16px;
+        line-height: 20px;
+    }
+    p{
+        color: #1D1B1F;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    ul:not(.social-media-icons){
+        padding: 12px 0;
+        margin: 8px 0;
+        li{
+            position: relative;
+            padding-left: 8px;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: #1D1B1F;
+            margin-bottom: 8px;
+            align-items: center;
+            &::before{
+                content: "";
+                background-color: #67548E;
+                width: 6px;
+                height: 6px;
+                display: inline-block;
+                border-radius: 50%;
+                flex-shrink: 0;
+                position: absolute;
+                top: 10px;
+                left: -4px;
+            }
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+    }
+    img{
+        border-radius: 16px;
+        display: block;
+        margin: 24px 0 auto;
+    }
+}
+.post-box{
+    box-shadow: 0px 4px 20px 3px #0000001A;
+}
+.related-posts-slider {
+    overflow-x: hidden;
+    .splide__track {
+        overflow: visible;
+    }
+    
+    .splide__pagination {
+        position: unset;
+        display: flex;
+        justify-content: flex-start;
+        height: 40px;
+        margin-top: 32px;
+        gap: 7px;
+        .splide__pagination__page {
+            border-radius: 4px;
+            width: 8px;
+            height: 4px;
+            background-color: #CBC4D0;
+            &.is-active{
+                width: 24px;
+                height: 4px;
+                background-color: #49454F;
+                border-radius: 4px;
+            }
+        }
+    }
+}
+
+.toc-slide-up {
+    animation: slideUp 0.3s ease-out forwards;
+}
+
+.toc-slide-down {
+    animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+
+
+#tocContainer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+@media (min-width: 992px) {
+    .main-navigation {
+        transform: none;
+        ul {
+            display: flex;
+            gap: 16px;
+            li {
+                a { 
+                    color: #1D1B1F;
+                    transition: color cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+                    &:hover{color: #67548E;} 
+                }
+            }
+        }
+    }
+}

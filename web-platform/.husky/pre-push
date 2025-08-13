@@ -1,0 +1,3 @@
+bun run generate-types
+
+bun run build:dev

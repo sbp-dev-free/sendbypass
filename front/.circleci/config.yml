@@ -1,0 +1,37 @@
+version: 2.1
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
+jobs:
+  build-dev:
+    docker:
+      - image: cimg/base:2022.09
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/app.tar
+      # Replace this with steps to build a package, or executable
+      - run:
+          name: Build an artifac
+          command: |
+            docker compose -f docker/development/docker-compose.yml build
+            docker image list
+            docker tag with-docker-multi-env-development ghcr.io/sendbypass/front-dev:latest
+            echo $GITHUB_PASS | docker login ghcr.io -u mohiz --password-stdin
+            docker push ghcr.io/sendbypass/front-dev:latest
+
+# Orchestrate jobs using workflows
+# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
+workflows:
+  main:
+    jobs:
+      - build-dev:
+          filters:
+            branches:
+              only:
+                - dev
+          context: secrets

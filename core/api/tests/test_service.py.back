@@ -1,0 +1,578 @@
+#!/usr/bin/env python3
+
+from api.models import Service
+from api.models.service import ServiceFlow
+from api.models.requirement import RequirementFlow
+from api.tests.fixtures import *
+from .test_base import ViewTestBase
+
+from rest_framework import status
+
+class TestServiceList(ViewTestBase):
+    def setUp(self):
+        super().setUp()
+
+        self.u1 = UserFactory()
+        self.f1 = FlightFactory()
+        self.t1 = TripFactory(flight=self.f1, user=self.u1)
+
+    def test_do_not_accept_without_login(self):
+        url = self.reverse('services-list')
+        response = self.post(
+            url,
+            data={
+                'type': 'MOVE_STUFF',
+                'trip': self.t1.id,
+                'properties': {
+                    'max_weight': 1,
+                    'max_length': 2
+                },
+                'cost': {
+                    'wage': 1234.5
+                }
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_401_UNAUTHORIZED,
+            response.data
+        )
+
+    def test_could_not_create_with_zero_id(self):
+        self.login(self.u1)
+
+        url = self.reverse('services-list')
+        response = self.post(
+            url,
+            data={
+                'type': 'SHIPPING',
+                'trip': 0,
+                'properties': {
+                    'type': 'VISIBLE_LOAD',
+                    'weight': 1,
+                    'height': 10,
+                    'width': 20,
+                    'length': 10
+                },
+                'cost': {
+                    'wage': 1234.5
+                }
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST,
+            response.data
+        )
+
+    def test_could_not_create_with_wrong_trip_id(self):
+        self.login(self.u1)
+
+        url = self.reverse('services-list')
+        response = self.post(
+            url,
+            data={
+                'type': 'SHIPPING',
+                'trip': self.t1.id + 10,
+                'properties': {
+                    'type': 'VISIBLE_LOAD',
+                    'weight': 1,
+                    'height': 10,
+                    'width': 20,
+                    'length': 10
+                },
+                'cost': {
+                    'wage': 1234.5
+                }
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST,
+            response.data
+        )
+
+    def test_could_not_create_without_trip(self):
+        self.login(self.u1)
+
+        url = self.reverse('services-list')
+        response = self.post(
+            url,
+            data={
+                'type': 'SHIPPING',
+                'properties': {
+                    'type': 'VISIBLE_LOAD',
+                    'weight': 1,
+                    'height': 10,
+                    'width': 20,
+                    'length': 10
+                },
+                'cost': {
+                    'wage': 1234.5
+                }
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST,
+            response.data
+        )
+
+    def test_create_service_visible_load(self):
+        self.login(self.u1)
+
+        url = self.reverse('services-list')
+        response = self.post(
+            url,
+            data={
+                'type': 'SHIPPING',
+                'trip': self.t1.id,
+                'properties': {
+                    'type': 'VISIBLE_LOAD',
+                    'weight': 1,
+                    'height': 10,
+                    'width': 20,
+                    'length': 10
+                },
+                'cost': {
+                    'wage': 1234.5
+                }
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+            response.data
+        )
+
+        self.assertIn(
+            'id',
+            response.data
+        )
+
+    def test_could_not_create_same_type_service(self):
+        ShippingVisibleLoadServiceFactory(trip=self.t1)
+
+        self.login(self.u1)
+
+        url = self.reverse('services-list')
+        response = self.post(
+            url,
+            data={
+                'type': 'SHIPPING',
+                'trip': self.t1.id,
+                'properties': {
+                    'type': 'VISIBLE_LOAD',
+                    'weight': 1,
+                    'height': 10,
+                    'width': 20,
+                    'length': 10
+                },
+                'cost': {
+                    'wage': 1234.5
+                }
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_400_BAD_REQUEST
+        )
+
+    def test_create_last_type_service(self):
+        ShippingVisibleLoadServiceFactory(trip=self.t1)
+        ShoppingVisibleLoadServiceFactory(trip=self.t1)
+
+        self.login(self.u1)
+
+        url = self.reverse('services-list')
+        response = self.post(
+            url,
+            data={
+                'type': 'SHIPPING',
+                'trip': self.t1.id,
+                'properties': {
+                    'type': 'DOCUMENT',
+                    'weight': 1,
+                },
+                'cost': {
+                    'wage': 1234.5
+                }
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+            response.data
+        )
+
+    def test_create_service_document(self):
+        self.login(self.u1)
+
+        url = self.reverse('services-list')
+        response = self.post(
+            url,
+            data={
+                'type': 'SHIPPING',
+                'trip': self.t1.id,
+                'properties': {
+                    'type': 'DOCUMENT',
+                    'weight': 1
+                },
+                'cost': {
+                    'wage': 1234.5
+                }
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_201_CREATED,
+            response.data
+        )
+
+        self.assertIn(
+            'id',
+            response.data
+        )
+
+    def test_create_service_shopping(self):
+        self.login(self.u1)
+
+        url = self.reverse('services-list')
+        response = self.post(
+            url,
+            data={
+                'type': 'SHOPPING',
+                'trip': self.t1.id,
+                'properties': {
+                    'type': 'VISIBLE_LOAD',
+                    'weight': 1
+                },
+                'cost': {
+                    'wage': 1234.5
+                }
+            }
+        )
+
+
+    def test_nothing_returned_for_not_authorized(self):
+        s1 = ShippingVisibleLoadServiceFactory(trip=self.t1)
+
+        url = self.reverse(
+            'services-list'
+        )
+
+        response = self.get(
+            url
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_401_UNAUTHORIZED
+        )
+
+    def test_get_services_just_return_user_service(self):
+        u2 = UserFactory()
+        t2 = TripFactory(user=u2)
+
+        s1 = ShippingVisibleLoadServiceFactory(trip=self.t1)
+        s2 = ShippingVisibleLoadServiceFactory(trip=t2)
+
+        self.login(user=self.u1)
+
+        url = self.reverse(
+            'services-list'
+        )
+
+        response = self.get(
+            url
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK)
+
+        self.assertEqual(
+            response.data['count'],
+            1
+        )
+
+        self.assertEqual(
+            response.data['results'][0]['id'],
+            s1.id
+        )
+
+        self.assertTrue(
+            response.data['results'][0]['properties']
+        )
+
+        self.assertEqual(
+            response.data['results'][0]['properties']['type'],
+            'VISIBLE_LOAD'
+        )
+
+    def test_get_services_by_requirement(self):
+        s = ShippingVisibleLoadServiceFactory(
+            trip=self.t1
+        )
+
+        u2 = UserFactory()
+
+        r1 = ShippingRequirementFactory(
+            user=u2,
+            source__location__location__city=self.f1.source.location.city,
+            destination__location__location__city=self.f1.destination.location.city,
+            cost={'wage': s.cost.wage - 1},
+            properties__type=ItemType.CLOTH,
+            properties__weight=s.properties.weight - 1
+        )
+
+        self.login(self.u1)
+
+        url = self.reverse('services-list')
+        response = self.get(
+            url,
+            data={
+                'requirement': r1.id
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        data = response.data
+
+        self.assertEqual(
+            data['count'],
+            1
+        )
+
+    def test_get_services_by_wrong_requirement(self):
+        s = ShippingVisibleLoadServiceFactory(
+            trip=self.t1
+        )
+
+        u2 = UserFactory()
+
+        r1 = ShoppingRequirementFactory(
+            user=u2,
+            source__location__location__city=self.f1.source.location.city,
+            destination__location__location__city=self.f1.destination.location.city,
+            cost={'wage': s.cost.wage - 10},
+            properties__type=ItemType.CLOTH,
+            properties__weight=s.properties.weight - 10
+        )
+
+        self.login(self.u1)
+
+        url = self.reverse('services-list')
+        response = self.get(
+            url,
+            data={
+                'requirement': r1.id
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+        data = response.data
+
+        self.assertEqual(
+            data['count'],
+            0
+        )
+
+class TestServiceDetail(ViewTestBase):
+    def setUp(self):
+        super().setUp()
+
+        self.u1 = UserFactory()
+
+        self.t1 = TripFactory(user=self.u1)
+
+        self.s1 = ShippingVisibleLoadServiceFactory(
+            trip=self.t1,
+            cost={'wage': 1000}
+        )
+
+    def test_could_not_get_when_not_login(self):
+        url = self.reverse('service-detail', kwargs={'pk': self.s1.id})
+        response = self.get(
+            url
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_401_UNAUTHORIZED
+        )
+
+    def test_could_not_get_when_not_own_object(self):
+        u2 = UserFactory()
+        self.login(u2)
+
+        url = self.reverse('service-detail', kwargs={'pk': self.s1.id})
+        response = self.get(
+            url
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_403_FORBIDDEN
+        )
+
+    def test_retrieve(self):
+        self.login(self.u1)
+
+        url = self.reverse('service-detail', kwargs={'pk': self.s1.id})
+        response = self.get(
+            url
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK
+        )
+
+    def test_patch_costs(self):
+        self.login(self.u1)
+
+        url = self.reverse('service-detail', kwargs={'pk': self.s1.id})
+        response = self.patch(
+            url,
+            data={
+                'cost': {
+                    'wage': 2000
+                }
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK,
+            response.data
+        )
+
+        self.assertIn(
+            'cost',
+            response.data
+        )
+
+        self.assertEqual(
+            response.data['cost']['wage'],
+            2000
+        )
+
+    def test_patch_all_pro(self):
+        self.login(self.u1)
+
+        url = self.reverse('service-detail', kwargs={'pk': self.s1.id})
+        response = self.patch(
+            url,
+            data={
+                'properties': {
+                    'width': 20
+                },
+                'cost': {
+                    'wage': 2000
+                }
+            }
+        )
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_200_OK,
+            response.data
+        )
+
+        data = response.data
+
+        self.assertEqual(
+            data['properties']['width'],
+            20
+        )
+
+    def test_able_to_delete_service(self):
+        self.login(self.u1)
+
+        url = self.reverse('service-detail', kwargs={'pk': self.s1.id})
+        response = self.delete(url)
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_204_NO_CONTENT
+        )
+
+        response = self.get(url)
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_404_NOT_FOUND
+        )
+
+class TestServiceDetailWithRequest(ViewTestBase):
+    def setUp(self):
+        super().setUp()
+
+        self.u1 = UserFactory()
+        self.u2 = UserFactory()
+
+        self.t1 = TripFactory(
+            user=self.u1
+        )
+
+        self.s1 = ShippingVisibleLoadServiceFactory(trip=self.t1)
+        ServiceFlow(self.s1).accept()
+
+        self.r1 = ShippingRequirementFactory(user=self.u2)
+        RequirementFlow(self.r1).accept()
+
+        self.re = RequestFactory(
+            requirement=self.r1,
+            service=self.s1
+        )
+
+    def test_could_not_able_to_delete_service(self):
+        self.login(self.u1)
+
+        url = self.reverse('service-detail', kwargs={'pk': self.s1.id})
+        response = self.delete(url)
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_406_NOT_ACCEPTABLE
+        )
+
+
+    def test_able_to_delete_service_unrelated_to_request(self):
+        s2 = ShoppingVisibleLoadServiceFactory(trip=self.t1)
+
+        ServiceFlow(s2).accept()
+
+        self.login(self.u1)
+
+        url = self.reverse('service-detail', kwargs={'pk': s2.id})
+        response = self.delete(url)
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_204_NO_CONTENT
+        )
+
+        response = self.get(url)
+
+        self.assertEqual(
+            response.status_code,
+            status.HTTP_404_NOT_FOUND
+        )

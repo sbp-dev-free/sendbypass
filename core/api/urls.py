@@ -1,0 +1,176 @@
+#!/usr/bin/env python3
+
+from api.utils import peybar_url
+from api.views import *
+
+from django.contrib import admin
+from django.urls import path
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+urlpatterns = [
+    peybar_url(
+        'users/?$',
+        UserList.as_view(),
+        name='users-list'),
+    peybar_url(
+        'user/?$',
+        UserDestroy.as_view(),
+        name='user-detail'),
+    peybar_url(
+        'user_documents/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/?',
+        verify_document,
+        name='user_document_detail'
+    ),
+    peybar_url(
+        'account_requests/?$',
+        add_user_request,
+        name='account-requests'
+    ),
+    peybar_url(
+        'account_request/(?P<uidb64>[^/]+)/(?P<token>[^/]+)/?$',
+        reset_password,
+        name='account-request'
+    ),
+    peybar_url(
+        'profile/?$',
+        ProfileDetail.as_view(),
+        name='profile'),
+    peybar_url('login/?$',
+        LoginView.as_view(),
+        name='login'),
+    peybar_url('login/refresh',
+        TokenRefreshView.as_view(),
+        name='login-refresh'),
+    peybar_url(
+        'google_login/?$',
+        GoogleLoginRedirectApi.as_view(),
+        name='google-login'
+    ),
+    peybar_url(
+        'google_login/redirect/?$',
+        GoogleLoginApi.as_view(),
+        name='google-redirect'
+    ),
+    peybar_url(
+        'locations/?$',
+        LocationList.as_view(),
+        name='locations-list'
+    ),
+    peybar_url(
+        'user_locations/?$',
+        UserLocationList.as_view(),
+        name='user_locations-list',
+    ),
+    peybar_url(
+        'user_locations/(?P<pk>[0-9]+)/?$',
+        UserLocationDetail.as_view(),
+        name='user_location-detail'
+    ),
+    peybar_url(
+        'contacts/?$',
+        ContactList.as_view(),
+        name='contacts-list',
+    ),
+    peybar_url(
+        'cities/?$',
+        CityList.as_view(),
+        name='cities-list'
+    ),
+    peybar_url(
+        'countries/?$',
+        CountryList.as_view(),
+        name='countries-list'
+    ),
+    peybar_url(
+        'airports/?$',
+        AirportList.as_view(),
+        name='airports-list'
+    ),
+    peybar_url(
+        'languages/?$',
+        LanguageList.as_view(),
+        name='languages-list'
+    ),
+    peybar_url(
+        'flights/?',
+        FlightList.as_view(),
+        name='flights-list'
+    ),
+    peybar_url(
+        'trips/?$',
+        TripList.as_view(),
+        name='trips-list'),
+    peybar_url(
+        'trips/(?P<pk>[0-9]+)/?$',
+        TripDetail.as_view(),
+        name='trip-detail'
+    ),
+    peybar_url(
+        'requirements/?$',
+        RequirementList.as_view(),
+        name='requirements-list'
+    ),
+    peybar_url(
+        'requirements/(?P<pk>[0-9]+)/?$',
+        RequirementDetail.as_view(),
+        name='requirement-detail'
+    ),
+    peybar_url(
+        'services/?$',
+        ServiceList.as_view(),
+        name='services-list'
+    ),
+    peybar_url(
+        'services/(?P<pk>[0-9]+)/?$',
+        ServiceDetail.as_view(),
+        name='service-detail'
+    ),
+    peybar_url(
+        'requests/?$',
+        RequestList.as_view(),
+        name='requests-list'
+    ),
+    peybar_url(
+        'activity_requests/?$',
+        ActivityRequestList.as_view(),
+        name='activity_requests-list'
+    ),
+    peybar_url(
+        'requests/(?P<pk>[0-9]+)/?$',
+        RequestDetail.as_view(),
+        name='request-detail'
+    ),
+    peybar_url(
+        'orders/?$',
+        OrderList.as_view(),
+        name='orders-list'
+    ),
+    peybar_url(
+        'orders/(?P<pk>[0-9]+)/?$',
+        OrderDetail.as_view(),
+        name='order-detail'
+    ),
+    peybar_url(
+        'order_steps/(?P<pk>[0-9]+)/?$',
+        OrderStepDetail.as_view(),
+        name='order_step-detail'
+    ),
+    peybar_url(
+        'tickets/?$',
+        TicketList.as_view(),
+        name='tickets-list'
+    ),
+    peybar_url(
+        'subscribes/?$',
+        SubscribeList.as_view(),
+        name='subscribes-list'
+    )
+
+    # peybar_url('rates/'),
+    # peybar_url('transactions/'),
+    # peybar_url('progresses/'),
+    # peybar_url('sessions/')
+]

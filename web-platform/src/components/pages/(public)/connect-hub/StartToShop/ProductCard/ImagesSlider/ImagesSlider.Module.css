@@ -1,0 +1,9 @@
+:root {
+  --swiper-pagination-color: rgb(var(--primary));
+  --swiper-pagination-bullet-inactive-color: rgb(var(--inverse-on-surface));
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-opacity: 1;
+  --swiper-pagination-bullet-size: 6px;
+  --swiper-pagination-bullet-width: 6px;
+  --swiper-pagination-bullet-height: 6px;
+}

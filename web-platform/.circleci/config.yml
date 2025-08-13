@@ -1,0 +1,89 @@
+version: 2.1
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
+jobs:
+  build:
+    docker:
+      - image: cimg/base:2022.09
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/app.tar
+      # Replace this with steps to build a package, or executable
+      - run:
+          name: Build an artifact
+          command: |
+            docker compose -f ./docker-compose.yml build web-platform
+            docker tag web-platform ghcr.io/sendbypass/web-platform:latest
+            echo $GITHUB_PASS | docker login ghcr.io -u mohiz --password-stdin
+            docker push ghcr.io/sendbypass/web-platform:latest
+  build-dev:
+    docker:
+      - image: cimg/base:2022.09
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/app.tar
+      # Replace this with steps to build a package, or executable
+      - run:
+          name: Build an artifac
+          command: |
+            docker compose -f ./docker-compose.yml build web-platform-dev
+            docker tag web-platform-dev ghcr.io/sendbypass/web-platform-dev:latest
+            echo $GITHUB_PASS | docker login ghcr.io -u mohiz --password-stdin
+            docker push ghcr.io/sendbypass/web-platform-dev:latest
+  build-app:
+    docker:
+      - image: cimg/base:2022.09
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - v1-{{ .Branch }}
+          paths:
+            - /caches/app.tar
+      # Replace this with steps to build a package, or executable
+      - run:
+          name: Build an artifac
+          command: |
+            docker compose -f ./docker-compose.yml build web-platform-app
+            docker tag web-platform-app ghcr.io/sendbypass/web-platform-app:latest
+            echo $GITHUB_PASS | docker login ghcr.io -u mohiz --password-stdin
+            docker push ghcr.io/sendbypass/web-platform-app:latest
+
+# Orchestrate jobs using workflows
+# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
+workflows:
+  main:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - main
+          context:
+            - secrets
+            - web-platform-envs
+      - build-dev:
+          filters: pipeline.git.branch == "develop" and pipeline.trigger_parameters.github_app.commit_title starts-with "Bump"
+          context:
+            - secrets
+            - dev-web-platform-envs
+      - build-app:
+          filters:
+            branches:
+              only:
+                - main
+          context:
+            - secrets
+            - app-web-platform-envs

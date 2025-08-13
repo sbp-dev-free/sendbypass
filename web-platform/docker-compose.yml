@@ -1,0 +1,53 @@
+services:
+  web-platform:
+    container_name: web-platform
+    image: web-platform
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        NEXT_PUBLIC_API_VERSION: ${PROD_NEXT_PUBLIC_API_VERSION}
+        NEXT_PUBLIC_BASE_API_URL: ${PROD_NEXT_PUBLIC_BASE_API_URL}
+        NEXT_PUBLIC_COOKIE_DOMAIN: ${PROD_NEXT_PUBLIC_COOKIE_DOMAIN}
+        NEXT_PUBLIC_LOCALHOST_API_URL: ${PROD_NEXT_PUBLIC_LOCALHOST_API_URL}
+        NEXT_PUBLIC_REFRESH_TOKEN_TIMEOUT: ${PROD_NEXT_PUBLIC_REFRESH_TOKEN_TIMEOUT}
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    restart: always
+    ports:
+      - 8000:3000
+  web-platform-dev:
+    container_name: web-platform-dev
+    image: web-platform-dev
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        NEXT_PUBLIC_API_VERSION: ${DEV_NEXT_PUBLIC_API_VERSION}
+        NEXT_PUBLIC_BASE_API_URL: ${DEV_NEXT_PUBLIC_BASE_API_URL}
+        NEXT_PUBLIC_COOKIE_DOMAIN: ${DEV_NEXT_PUBLIC_COOKIE_DOMAIN}
+        NEXT_PUBLIC_LOCALHOST_API_URL: ${DEV_NEXT_PUBLIC_LOCALHOST_API_URL}
+        NEXT_PUBLIC_REFRESH_TOKEN_TIMEOUT: ${DEV_NEXT_PUBLIC_REFRESH_TOKEN_TIMEOUT}
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    restart: always
+    ports:
+      - 8000:3000
+  web-platform-app:
+    container_name: web-platform-app
+    image: web-platform-app
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        NEXT_PUBLIC_API_VERSION: ${NEXT_PUBLIC_API_VERSION}
+        NEXT_PUBLIC_BASE_API_URL: ${NEXT_PUBLIC_BASE_API_URL}
+        NEXT_PUBLIC_COOKIE_DOMAIN: ${NEXT_PUBLIC_COOKIE_DOMAIN}
+        NEXT_PUBLIC_LOCALHOST_API_URL: ${NEXT_PUBLIC_LOCALHOST_API_URL}
+        NEXT_PUBLIC_REFRESH_TOKEN_TIMEOUT: ${NEXT_PUBLIC_REFRESH_TOKEN_TIMEOUT}
+        NEXT_PUBLIC_ORIGIN: ${NEXT_PUBLIC_ORIGIN}
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+    restart: always
+    ports:
+      - 8000:3000

@@ -1,0 +1,43 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.3.0
+    container_name: sbp_mysql
+    restart: always
+    volumes:
+      - ~/workspace/data/core_mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASS}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASS}
+    healthcheck:
+      #test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "${DATABASE_USER}", "-p${DATABASE_PASS}"]
+      test: mysqladmin ping -h localhost -u ${DATABASE_USER} -p${DATABASE_PASS} || exit 1
+      interval: 4s
+      timeout: 3s
+      retries: 3
+      start_period: 1s
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_HOST: "sbp_mysql"
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASS: ${DATABASE_PASS}
+    container_name: core
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - core/.env
+    command: bash -c "./manage.py migrate; gunicorn -c gunicorn.py core.wsgi:application"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  data:

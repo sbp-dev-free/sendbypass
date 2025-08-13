@@ -1,0 +1,10 @@
+@import url('./fonts.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.slick-list {
+  padding: 20px  0px!important;
+}
+.ant-card-actions>li{
+    margin: 12px 0  0 !important;
+}
